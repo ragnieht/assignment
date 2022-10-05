@@ -3,7 +3,7 @@ import { Text,TextInput,StyleSheet,View, Dimensions,TouchableOpacity } from 'rea
 
 export default function SearchComponent({ handleChange, onPress }) {    
     return (  
-        <View style={styles.container}>
+        <View>
             <TextInput
                 style={styles.searchBox}
                 placeholder='Search a text'
@@ -23,9 +23,6 @@ export default function SearchComponent({ handleChange, onPress }) {
 
 const win = Dimensions.get('window')
 const styles = StyleSheet.create({
-    container: {
-        // alignItems: 'center',        
-    },
     searchBox: {
         marginLeft: 10,
         marginTop: 5,

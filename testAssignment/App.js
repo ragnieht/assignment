@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useReducer, createContext } from "react";
 import { 
   View,
@@ -10,7 +11,7 @@ import SearchComponent from "./components/SearchComponent";
 
 export const DataContext = createContext()
 
-// generating random number between 1000000000 t0 9000000000
+// generating random number between 1000000000 to 9000000000
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -25,13 +26,14 @@ export const initialState = {
 }
 export const reducer = ( state , action ) => {
   switch (action.type) {
+    // search bar filter 
     case 'onQueryChange' : {
-      console.log(action.payload.input)
       let filtered = state.posts.filter(post => {
         return post.body.toUpperCase().includes(action.payload.input.toUpperCase())
       })
       return { ...state, query: action.payload.input, display: filtered }
     }
+    // store fetched data, duplicate and assign key, assign random number
     case 'initData' : {
       let temp = Array(30).fill(action.payload.data).flat() 
       let newData = temp.map(( post, index ) => {
@@ -39,6 +41,7 @@ export const reducer = ( state , action ) => {
       })
       return { ...state, posts: newData, display: newData }      
     }
+    // toggle random number reset 
     case 'tglRandom' : {
       state.display.forEach(post => post.randomInt = getRandomInt(1000000000,9000000000))
       return { ...state }
@@ -46,6 +49,7 @@ export const reducer = ( state , action ) => {
   }
 }
 
+// Main Component
 export default function App() {
   const [ state , dispatch ] = useReducer( reducer, initialState )
   // Fetching and initial storing of data into state WITH duplicating it 30 times
@@ -63,19 +67,18 @@ export default function App() {
   const handleChange = (e) => {   
     dispatch({type: 'onQueryChange', payload: { input: e }})    
   }
-  // change random numbers on Re-render
+  // change random numbers on Re-render press
   const onPress = () => {
     dispatch({type: 'tglRandom'})
   }
 
   return (    
-    // <DataContext.Provider value={state.display}>
       <View style={styles.container}>
+        <StatusBar style="auto"/>``
         <Image source={require('./assets/doggo_walk.gif')} style={styles.image}/>
         <SearchComponent handleChange={handleChange} onPress={onPress}/>
         <PostComponent data={state.display}/>
       </View>
-    // </DataContext.Provider>
   )
 }
 
