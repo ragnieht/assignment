@@ -74,7 +74,7 @@ export default function App() {
 
   return (    
       <View style={styles.container}>
-        <StatusBar style="auto"/>``
+        <StatusBar style="auto"/>
         <Image source={require('./assets/doggo_walk.gif')} style={styles.image}/>
         <SearchComponent handleChange={handleChange} onPress={onPress}/>
         <PostComponent data={state.display}/>
