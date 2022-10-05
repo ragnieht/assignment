@@ -23,8 +23,9 @@ export default function PostComponent({data}) {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10,
-        marginTop: 30
+        flex: 1,
+        marginHorizontal: 10,
+        marginVertical: 30
     },
     bolded: {
         fontWeight: 'bold'

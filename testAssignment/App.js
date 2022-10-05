@@ -84,7 +84,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",  
-    justifyContent: 'top'  
+    justifyContent: 'top',
+    marginTop: 50,
+    height: win.height
   },
   image: {
     width: win.width,
