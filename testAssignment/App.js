@@ -5,8 +5,8 @@ import {
   Image, 
   Dimensions,  
 } from "react-native";
-import PostComponent from "./components/post";
-import SearchComponent from "./components/search";
+import PostComponent from "./components/PostComponent";
+import SearchComponent from "./components/SearchComponent";
 
 export const DataContext = createContext()
 
